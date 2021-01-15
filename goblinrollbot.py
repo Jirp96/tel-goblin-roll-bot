@@ -31,7 +31,12 @@ RADWOLF_FRASES = [
         "Ante la fé menguante, para cualquier clérigo, es fundamental recuperar el contacto con el ser íntimo, con el ser que participa de algún modo secreto de la chispa divina que recorre infatigablemente el Universo y lo anima, lo sostiene, le presta realidad bajo su aspecto de cáscara vacía, castea Heal la puta que te pario.",
         "La comprensión es, a veces, un objeto tan real y vivo, como el daño que recibimos.",
         "Quien mira hacia afuera, duerme; quien mira hacia adentro, despierta.",
-        "Ya desde los cuatro años los niños humanos pueden lograr una comprensión parcial de lo que sucede después de la muerte."
+        "Ya desde los cuatro años los niños humanos pueden lograr una comprensión parcial de lo que sucede después de la muerte.",
+        "Queremos ser felices de manera fácil, barata, rápida, indolora y sin mucho esfuerzo, pero cualquier atajo que pretenda evitar la realidad de la vida se convierte en una opción poco sana y algo inmadura.",
+        "Paradójicamente, la transformación sólo se puede dar a partir de la aceptación: solamente podemos actuar sobre algo si previamente lo aceptamos, si nos hacemos cargo.",
+        "La cosa más aterradora es aceptarse a sí mismo por completo. Tomar conciencia y aceptar nuestra luz y nuestra sombra nos librará del agotador esfuerzo que supone tratar de ser distintos a como realmente somos. +1 Will save.",
+        "El conocimiento de tu propia oscuridad es el mejor método para hacer frente a las tinieblas de otras personas. +1 radiant dmg / d6 turnos.",
+        
     ]
 
 HELP_TEXT = '''Stoi chikito, así que no me pidan mucho
