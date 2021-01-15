@@ -42,22 +42,22 @@ RADWOLF_FRASES = [
 HELP_TEXT = '''Stoi chikito, así que no me pidan mucho
 - /help 
     Te tiro este texto
-- /roll d2
-     Te tira una moneda
+- /roll d2 [+- num]
+     Te tira una moneda y le suma/resta num
 - /roll d4
-     Te tira un d4
+     Te tira un d4 y le suma/resta num
 - /roll d6
-     Te tira un d6
+     Te tira un d6 y le suma/resta num
 - /roll d8
-     Te tira un d8
+     Te tira un d8 y le suma/resta num
 - /roll d10
-     Te tira un d10
+     Te tira un d10 y le suma/resta num
 - /roll d12
-     Te tira un d12
+     Te tira un d12 y le suma/resta num
 - /roll d20
-     Te tira un d20
+     Te tira un d20 y le suma/resta num
 - /roll d100
-     Te tira un d100
+     Te tira un d100 y le suma/resta num
 - /rad o /radwolf
     Invoca la sabiduría milenaria de un lobo con camisa
 '''
@@ -69,6 +69,37 @@ LOGGER = logging.getLogger(__name__)
 def rollDice(max):
     return random.randrange(max) + 1
 
+def RepresentsInt(s):
+    try: 
+        int(s)
+        return True
+    except ValueError:
+        return False
+
+def roll(update, context):
+    dNum = context.args[0]
+    addedNum = ''    
+    text_roll = "Dado inválido, opciones: {0}".format(AVAILABLE_DICE)
+
+    if dNum in AVAILABLE_DICE:
+        num = int(dNum[1:])
+        result = rollDice(num)
+
+        if len(context.args > 1):
+            addedNum = context.args[1]
+            if RepresentsInt(addedNum):
+                result += int(addedNum)
+
+        text_roll = '=> {0}'.format(result)
+    
+    context.bot.send_message(chat_id=update.effective_chat.id, text=text_roll)
+
+def radwolf(update, context):
+    rad_text = random.choice(RADWOLF_FRASES)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=rad_text)
+
+
+
 def error(bot, update, error):
     LOGGER.warning('Update "%s" caused error "%s"', update, error)
 
@@ -77,20 +108,6 @@ def start(update, context):
 
 def unknown(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text="Stoi chikito, no entendí ese comando.")
-
-def roll(update, context):
-    dNum = context.args[0]
-    text_roll = "Dado inválido, opciones: {0}".format(AVAILABLE_DICE)
-
-    if dNum in AVAILABLE_DICE:
-        num = int(dNum[1:])
-        text_roll = '=> {0}'.format(rollDice(num))
-    
-    context.bot.send_message(chat_id=update.effective_chat.id, text=text_roll)
-
-def radwolf(update, context):
-    rad_text = random.choice(RADWOLF_FRASES)
-    context.bot.send_message(chat_id=update.effective_chat.id, text=rad_text)
 
 def help(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text=HELP_TEXT)
