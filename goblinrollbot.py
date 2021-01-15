@@ -14,9 +14,12 @@ AVAILABLE_DICE = ["d2","d4","d6","d8","d10","d12","d20","d100"]
 
 RADWOLF_FRASES = [
         "Este bot está auspiciado por Garbarino", 
-        "Es solo un lobo con camisa! Nada más.", 
-        "Licenciado* Radwolf.", 
-        "Por favor, ya no más."
+        "Es solo un lobo con camisa! Nada más", 
+        "Licenciado* Radwolf", 
+        "Por favor, ya no más",
+        "El consentimiento es fundamental para las relaciones interpersonales de todo tipo",
+        "Sad al revés es Das, and das not good",
+        
     ]
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
