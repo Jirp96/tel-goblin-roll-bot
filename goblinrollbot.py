@@ -19,8 +19,43 @@ RADWOLF_FRASES = [
         "Por favor, ya no más",
         "El consentimiento es fundamental para las relaciones interpersonales de todo tipo",
         "Sad al revés es Das, and das not good",
-        
+        "Los problemas pasan a ser enemigos que afrontar. Hacelos mierda",
+        "Cuando entren a un lugar desconocido, es prudente avanzar muy lentamente porque el piso puede hundirse, no como pantano, sino como carne.",
+        "Para fortalecer la voluntad hay que hacer al menos dos cosas que nos desagraden.",
+        "Por favor, no toquen animales sin su consentimiento",
+        "Por el amor de dios, es solo un lobo.",
+        "Todos los caminos están cerrados si uno no tiene una idea clara de a dónde quiere llegar.",
+        "Cuando un conejo sufre de polución nocturna, una gran calma se extiende sobre el bosque.",
+        "A nadie le basta con que le expliquen los procesos; no hay más remedio que vivirlos, y al vivirlos es como se aprenden, pero también es como se cometen los errores y como uno pierde el rumbo.",
+        "Para salir y vivir aventuras, es preciso dejarse crecer un bigote sedoso y espeso.",
+        "Ante la fé menguante, para cualquier clérigo, es fundamental recuperar el contacto con el ser íntimo, con el ser que participa de algún modo secreto de la chispa divina que recorre infatigablemente el Universo y lo anima, lo sostiene, le presta realidad bajo su aspecto de cáscara vacía, castea Heal la puta que te pario.",
+        "La comprensión es, a veces, un objeto tan real y vivo, como el daño que recibimos.",
+        "Quien mira hacia afuera, duerme; quien mira hacia adentro, despierta.",
+        "Ya desde los cuatro años los niños humanos pueden lograr una comprensión parcial de lo que sucede después de la muerte."
     ]
+
+HELP_TEXT = '''Stoi chikito, así que no me pidan mucho
+- /help 
+    Te tiro este texto
+- /roll d2
+     Te tira una moneda
+- /roll d4
+     Te tira un d4
+- /roll d6
+     Te tira un d6
+- /roll d8
+     Te tira un d8
+- /roll d10
+     Te tira un d10
+- /roll d12
+     Te tira un d12
+- /roll d20
+     Te tira un d20
+- /roll d100
+     Te tira un d100
+- /rad o /radwolf
+    Invoca la sabiduría milenaria de un lobo con camisa
+'''
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                      level=logging.INFO)
@@ -31,7 +66,6 @@ def rollDice(max):
 
 def error(bot, update, error):
     LOGGER.warning('Update "%s" caused error "%s"', update, error)
-
 
 def start(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text="Soy un bot goblin, hablenme!")
@@ -53,6 +87,9 @@ def radwolf(update, context):
     rad_text = random.choice(RADWOLF_FRASES)
     context.bot.send_message(chat_id=update.effective_chat.id, text=rad_text)
 
+def help(update, context):
+    context.bot.send_message(chat_id=update.effective_chat.id, text=HELP_TEXT)
+
 def main():    
 
     PORT = int(os.environ.get('PORT', '8443'))
@@ -63,6 +100,7 @@ def main():
     roll_handler = CommandHandler('roll', roll)
     rad_handler = CommandHandler('rad', radwolf)
     radwolf_handler = CommandHandler('radwolf', radwolf)
+    help_handler = CommandHandler('help', help)
 
     unknown_handler = MessageHandler(Filters.command, unknown)
 
@@ -70,7 +108,7 @@ def main():
     dispatcher.add_handler(roll_handler)
     dispatcher.add_handler(rad_handler)
     dispatcher.add_handler(radwolf_handler)
-
+    dispatcher.add_handler(help_handler)
 
     dispatcher.add_handler(unknown_handler)
     dispatcher.add_error_handler(error)
