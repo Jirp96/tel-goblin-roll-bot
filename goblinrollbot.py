@@ -36,7 +36,7 @@ RADWOLF_FRASES = [
         "Paradójicamente, la transformación sólo se puede dar a partir de la aceptación: solamente podemos actuar sobre algo si previamente lo aceptamos, si nos hacemos cargo.",
         "La cosa más aterradora es aceptarse a sí mismo por completo. Tomar conciencia y aceptar nuestra luz y nuestra sombra nos librará del agotador esfuerzo que supone tratar de ser distintos a como realmente somos. +1 Will save.",
         "El conocimiento de tu propia oscuridad es el mejor método para hacer frente a las tinieblas de otras personas. +1 radiant dmg / d6 turnos.",
-        
+        "Allá donde miramos nos vemos a nosotros mismos, puesto que proyectamos lo propio en todo aquello que observamos.",
     ]
 
 HELP_TEXT = '''Stoi chikito, así que no me pidan mucho
