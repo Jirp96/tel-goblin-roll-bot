@@ -77,8 +77,7 @@ def RepresentsInt(s):
         return False
 
 def roll(update, context):
-    dNum = context.args[0]
-    addedNum = ''    
+    dNum = context.args[0]  
     text_roll = "Dado inválido, opciones: {0}".format(AVAILABLE_DICE)
 
     if dNum in AVAILABLE_DICE:
@@ -94,10 +93,28 @@ def roll(update, context):
     
     context.bot.send_message(chat_id=update.effective_chat.id, text=text_roll)
 
+def roll2(update, context):
+    dNum = context.args[0]  
+    text_roll = "Dado inválido, opciones: {0}".format(AVAILABLE_DICE)
+
+    context.bot.send_message(chat_id=update.effective_chat.id, text=str(context.args))
+    if dNum in AVAILABLE_DICE:
+        num = int(dNum[1:])
+        result = rollDice(num)
+
+        if len(context.args > 1):
+            addedNum = context.args[1]
+            if RepresentsInt(addedNum):
+                result += int(addedNum)
+
+        text_roll = '=> {0}'.format(result)
+    
+    context.bot.send_message(chat_id=update.effective_chat.id, text=text_roll)
+
+
 def radwolf(update, context):
     rad_text = random.choice(RADWOLF_FRASES)
     context.bot.send_message(chat_id=update.effective_chat.id, text=rad_text)
-
 
 
 def error(bot, update, error):
@@ -120,6 +137,7 @@ def main():
 
     start_handler = CommandHandler('start', start)
     roll_handler = CommandHandler('roll', roll)
+    roll2_handler = CommandHandler('roll2', roll2)
     rad_handler = CommandHandler('rad', radwolf)
     radwolf_handler = CommandHandler('radwolf', radwolf)
     help_handler = CommandHandler('help', help)
@@ -128,6 +146,7 @@ def main():
 
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(roll_handler)
+    dispatcher.add_handler(roll2_handler)
     dispatcher.add_handler(rad_handler)
     dispatcher.add_handler(radwolf_handler)
     dispatcher.add_handler(help_handler)
