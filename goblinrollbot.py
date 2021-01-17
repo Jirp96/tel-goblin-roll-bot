@@ -37,6 +37,22 @@ RADWOLF_FRASES = [
         "La cosa más aterradora es aceptarse a sí mismo por completo. Tomar conciencia y aceptar nuestra luz y nuestra sombra nos librará del agotador esfuerzo que supone tratar de ser distintos a como realmente somos. +1 Will save.",
         "El conocimiento de tu propia oscuridad es el mejor método para hacer frente a las tinieblas de otras personas. +1 radiant dmg / d6 turnos.",
         "Allá donde miramos nos vemos a nosotros mismos, puesto que proyectamos lo propio en todo aquello que observamos.",
+        "El destino es algo extraño, nunca se sabe como van a resultar las cosas; pero si se mantiene la mente y corazon abiertos, encontraras tu propio destino algun dia.",
+        "Es importante adquirir el conocimiento de diferentes opiniones, y puntos de vista. Si lo haces desde uno solo te vuelves rígido, y tedioso. Si entiendes el resto, serás mas completo.",
+        "Es importante creer en uno mismo, pero una pequeña ayuda de los demás es una gran bendición.",
+        "Si buscas la luz, a menudo podrás encontrarla. Pero si buscas la oscuridad, es todo lo que verás siempre. ",
+        "Puede que la vida no tenga un plan para nosotros, y las cosas sean juegos del caos y el azar. Tal vez entonces esta en cada uno encontrar significado donde tal vez no haya, y darle propósito. A ojos del universo es insignificante, pero a ojos de tu vida, puede ser toda tu vida.",
+        "Nunca debes rendirte a la desesperación. Si te permites ir por ese camino, te rendirás a tus instintos mas bajos. En tiempos oscuros, la esperanza es algo que te das a vos mismo. Ese es tal vez el significado de verdadera fuerza interior.",
+        "No hay nada de malo en dejar que quienes quieren te ayuden.",
+        "Muchas cosas que parecen amenazantes en la oscuridad, se vuelven agradables cuando las iluminamos.",
+        "Tu vida es donde quiera que estés, te gusto o no.",
+        "El orgullo no es lo opuesto de la vergüenza, sino su fuente; la humildad es el único antídoto a la vergüenza.",
+        "Sigue tu pasión, y la vida te apremiará. Y si no lo hace, lo esta haciendo, porque estas siguiendo tu pasión. ",
+        "A veces la mejor forma de resolver tus problemas, es ayudando a alguien mas.",
+        "No hay nada de malo en una vida de paz y prosperidad. Te sugiero que pienses que es lo que realmente querés en la vida, y por que.",
+        "A veces es mejor reconocer los errores en su momento y también tratar de enmendarlos, pero si los esta persiguiendo un Terrasque, corran. ",
+        "Tu destino depende de vos.",
+        "Hoy el destino es nuestro amigo.",
     ]
 
 HELP_TEXT = '''Stoi chikito, así que no me pidan mucho
