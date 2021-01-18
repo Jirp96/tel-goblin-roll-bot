@@ -43,7 +43,7 @@ RADWOLF_FRASES = [
         "Si buscas la luz, a menudo podrás encontrarla. Pero si buscas la oscuridad, es todo lo que verás siempre. ",
         "Puede que la vida no tenga un plan para nosotros, y las cosas sean juegos del caos y el azar. Tal vez entonces esta en cada uno encontrar significado donde tal vez no haya, y darle propósito. A ojos del universo es insignificante, pero a ojos de tu vida, puede ser toda tu vida.",
         "Nunca debes rendirte a la desesperación. Si te permites ir por ese camino, te rendirás a tus instintos mas bajos. En tiempos oscuros, la esperanza es algo que te das a vos mismo. Ese es tal vez el significado de verdadera fuerza interior.",
-        "No hay nada de malo en dejar que quienes quieren te ayuden.",
+        "No hay nada de malo en dejar que quienes te quieren te ayuden.",
         "Muchas cosas que parecen amenazantes en la oscuridad, se vuelven agradables cuando las iluminamos.",
         "Tu vida es donde quiera que estés, te gusto o no.",
         "El orgullo no es lo opuesto de la vergüenza, sino su fuente; la humildad es el único antídoto a la vergüenza.",
