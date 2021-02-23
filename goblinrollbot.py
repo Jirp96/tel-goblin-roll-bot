@@ -75,10 +75,13 @@ def roll(update, context):
     text_roll = processRoll(terms)
 
     global GOBLIN_BLESSES
-    if GOBLIN_BLESSES > 0:
-        text_roll = applyGoblinBlesses(text_roll)        
-        GOBLIN_BLESSES = 0
+    try:
 
+        if GOBLIN_BLESSES > 0:
+            text_roll = applyGoblinBlesses(text_roll)        
+            GOBLIN_BLESSES = 0
+    except Exception as err:
+        text_roll = err
     context.bot.send_message(chat_id=update.effective_chat.id, text=text_roll)
 
 def applyGoblinBlesses(normal_result):
