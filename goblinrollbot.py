@@ -76,7 +76,6 @@ def roll(update, context):
 
     global GOBLIN_BLESSES
     try:
-
         if GOBLIN_BLESSES > 0:
             text_roll = applyGoblinBlesses(text_roll)        
             GOBLIN_BLESSES = 0
@@ -87,7 +86,8 @@ def roll(update, context):
 def applyGoblinBlesses(normal_result):
     global GOBLIN_BLESSES
     goblin_result = 'Blessed for {0}'
-    toAdd = processToken("{0}d4".format(GOBLIN_BLESSES))
+    #toAdd = processToken("{0}d4".format(GOBLIN_BLESSES))
+    toAdd = 5
 
     randNum = random.randint(-5, 2)
     if randNum < 0:
