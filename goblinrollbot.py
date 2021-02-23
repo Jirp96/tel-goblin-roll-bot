@@ -13,6 +13,8 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                      level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
 
+GOBLIN_BLESSES = 0
+
 def rollDice(max):
     return random.randrange(max) + 1
 
@@ -72,7 +74,25 @@ def roll(update, context):
     
     text_roll = processRoll(terms)
 
+    if GOBLIN_BLESSES > 0:
+        text_roll = applyGoblinBlesses(text_roll)
+        GOBLIN_BLESSES = 0
+
     context.bot.send_message(chat_id=update.effective_chat.id, text=text_roll)
+
+def applyGoblinBlesses(normal_result):
+    goblin_result = 'Blessed for {0}'
+    toAdd = processToken("{0}d4".format(GOBLIN_BLESSES))
+
+    randNum = random.randint(-5, 2)
+    if randNum < 0:
+        toAdd = -1 * toAdd        
+    return "{0} ({1})".format(int(normal_result + toAdd), goblin_result.format(toAdd))
+
+def goblinBless(update, context):
+    GOBLIN_BLESSES += 1
+    goblin_bless_text = random.choice(constants.GOBLIN_BLESS_FRASES)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=goblin_bless_text)
 
 def radwolf(update, context):
     rad_text = random.choice(constants.RADWOLF_FRASES)
@@ -102,6 +122,7 @@ def main():
 
     start_handler = CommandHandler('start', start)
     roll_handler = CommandHandler('roll', roll)
+    bless_handler = CommandHandler('bless', goblinBless)
     rad_handler = CommandHandler('rad', radwolf)
     radwolf_handler = CommandHandler('radwolf', radwolf)
     tyrad_handler = CommandHandler('tyrad', tyradwolf)
@@ -112,6 +133,7 @@ def main():
 
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(roll_handler)
+    dispatcher.add_handler(bless_handler)
     dispatcher.add_handler(rad_handler)
     dispatcher.add_handler(radwolf_handler)
     dispatcher.add_handler(tyrad_handler)

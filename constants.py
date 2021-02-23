@@ -50,6 +50,13 @@ TY_RADWOLF_SPONSOR_FRASES = [
      "Por favor, ya no más",        
 ]
 
+GOBLIN_BLESS_FRASES = [
+    "El mundo ha sido bendecido por un Goblin.",
+    "Un Goblin es una bendición.",
+    "Pensaste en lo que estás haciendo?",
+    "Sad goblin noises."
+    ]
+
 VALID_ROLL_FORMAT_EXAMPLE = "/roll 2d20 + 3d6 + 5 - 1d4"
 
 HELP_TEXT = '''Stoi chikito, así que no me pidan mucho
