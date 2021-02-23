@@ -82,6 +82,7 @@ def roll(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text=text_roll)
 
 def applyGoblinBlesses(normal_result):
+    global GOBLIN_BLESSES
     goblin_result = 'Blessed for {0}'
     toAdd = processToken("{0}d4".format(GOBLIN_BLESSES))
 
@@ -91,6 +92,7 @@ def applyGoblinBlesses(normal_result):
     return "{0} ({1})".format(int(normal_result + toAdd), goblin_result.format(toAdd))
 
 def goblinBless(update, context):
+    global GOBLIN_BLESSES
     GOBLIN_BLESSES += 1
     goblin_bless_text = random.choice(constants.GOBLIN_BLESS_FRASES)
     context.bot.send_message(chat_id=update.effective_chat.id, text=goblin_bless_text)
