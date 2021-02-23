@@ -89,7 +89,7 @@ def applyGoblinBlesses(normal_result):
     randNum = random.randint(-5, 2)
     if randNum < 0:
         toAdd = -1 * toAdd        
-    return "{0} ({1})".format(int(normal_result + toAdd), goblin_result.format(toAdd))
+    return "{0} ({1})".format(int(normal_result)+ toAdd, goblin_result.format(toAdd))
 
 def goblinBless(update, context):
     global GOBLIN_BLESSES
