@@ -1,9 +1,6 @@
 TELEGRAM_BOT_API_TOKEN='***REMOVED***'
 HEROKU_APP_NAME='tel-goblin-roll-bot'
 
-#AVAILABLE_DICE = ["d2","d4","d6","d8","d10","d12","d20","d100"]
-AVAILABLE_DICE = [2,4,6,8,10,12,20,100]
-
 RADWOLF_FRASES = [
         "El consentimiento es fundamental para las relaciones interpersonales de todo tipo",
         "Sad al revés es Das, and das not good",
@@ -64,6 +61,8 @@ HELP_TEXT = '''Stoi chikito, así que no me pidan mucho
     Te tiro este texto
 - /roll 2d20 + 3d6 + 5 - 1d4
      Tira dados
+- /bless
+    Te "bendice" un goblin
 - /rad o /radwolf
     Invoca la sabiduría milenaria de un lobo con camisa
 - /tyrad o /tyradwolf
