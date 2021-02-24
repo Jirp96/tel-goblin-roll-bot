@@ -14,11 +14,10 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                      level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
 
-GOBLIN_BLESSES = 0
-
-GOBLIN_ROLLER = DiceRoller()
+GOBLIN_ROLLER = DiceRoller(random)
 
 def roll(update, context):
+    global GOBLIN_ROLLER
     terms = ''.join(context.args).replace(" ","").split("+")
     
     withBless = True if GOBLIN_ROLLER.getGoblinBless() > 0 else False
@@ -27,6 +26,7 @@ def roll(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text=text_roll)
 
 def goblinBless(update, context):
+    global GOBLIN_ROLLER
     GOBLIN_ROLLER.addGoblinBless()
     goblin_bless_text = random.choice(constants.GOBLIN_BLESS_FRASES)
     context.bot.send_message(chat_id=update.effective_chat.id, text=goblin_bless_text)
