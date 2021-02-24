@@ -24,7 +24,7 @@ def roll(update, context):
     
     withBless = True if GOBLIN_ROLLER.getGoblinBless() > 0 else False
 
-    text_roll = GOBLIN_ROLLER.processRoll(terms, withBless)
+    text_roll = GOBLIN_ROLLER.processRoll(withBless, terms)
     context.bot.send_message(chat_id=update.effective_chat.id, text=text_roll)
 
 def goblinBless(update, context):
