@@ -7,6 +7,8 @@ from src.diceRoller import DiceRoller
 from telegram.ext import Updater
 from telegram.ext import CommandHandler
 from telegram.ext import MessageHandler, Filters
+from telegram.error import (TelegramError, Unauthorized, BadRequest, 
+                            TimedOut, ChatMigrated, NetworkError)
 
 from src import constants
 
@@ -39,8 +41,13 @@ def tyradwolf(update, context):
     rad_text = random.choice(constants.TY_RADWOLF_SPONSOR_FRASES)
     context.bot.send_message(chat_id=update.effective_chat.id, text=rad_text)
 
-def error(bot, update, error):
-    LOGGER.warning('Update "%s" caused error "%s"', update, error)
+def error_callback(bot, update, context):
+    try:        
+        raise context.error
+    except BadRequest:
+        LOGGER.warning('Update "%s" caused error "%s"', update, context.error)
+    except TelegramError:
+        LOGGER.warning('Update "%s" caused error "%s"', update, context.error)
 
 def start(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text="Soy un bot goblin, hablenme!")
@@ -78,7 +85,7 @@ def main():
     dispatcher.add_handler(help_handler)
 
     dispatcher.add_handler(unknown_handler)
-    dispatcher.add_error_handler(error)
+    dispatcher.add_error_handler(error_callback)
     
     updater.start_webhook(listen="0.0.0.0",
                         port=PORT,
