@@ -61,6 +61,8 @@ HELP_TEXT = '''Stoi chikito, así que no me pidan mucho
     Te tiro este texto
 - /roll 2d20 + 3d6 + 5 - 1d4
      Tira dados
+- /bless
+    Te "bendice" un goblin
 - /rad o /radwolf
     Invoca la sabiduría milenaria de un lobo con camisa
 - /tyrad o /tyradwolf
