@@ -1,1 +1,1 @@
-web: python3 goblinrollbot.py
+web: python3 src/goblinrollbot.py
