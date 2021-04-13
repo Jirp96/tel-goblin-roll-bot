@@ -27,6 +27,13 @@ def roll(update, context):
     text_roll = GOBLIN_ROLLER.processRoll(withBless, terms)
     context.bot.send_message(chat_id=update.effective_chat.id, text=text_roll)
 
+def rollFours(update, context):
+    global GOBLIN_ROLLER
+    qty = ''.join(context.args).replace(" ","")
+    
+    text_roll = GOBLIN_ROLLER.processFours(qty)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=text_roll)
+
 def goblinBless(update, context):
     global GOBLIN_ROLLER
     GOBLIN_ROLLER.addGoblinBless()
@@ -72,11 +79,13 @@ def main():
     tyrad_handler = CommandHandler('tyrad', tyradwolf)
     tyradwolf_handler = CommandHandler('tyradwolf', tyradwolf)
     help_handler = CommandHandler('help', help)
+    rollfours_handler = CommandHandler('fours', rollFours)
 
     unknown_handler = MessageHandler(Filters.command, unknown)
 
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(roll_handler)
+    dispatcher.add_handler(rollfours_handler)
     dispatcher.add_handler(bless_handler)
     dispatcher.add_handler(rad_handler)
     dispatcher.add_handler(radwolf_handler)

@@ -56,6 +56,8 @@ GOBLIN_BLESS_FRASES = [
 
 VALID_ROLL_FORMAT_EXAMPLE = "/roll 2d20 + 3d6 + 5 - 1d4"
 
+VALID_ROLL_FOURS_FORMAT_EXAMPLE = "/fours 7"
+
 HELP_TEXT = '''Stoi chikito, así que no me pidan mucho
 - /help 
     Te tiro este texto
@@ -63,6 +65,8 @@ HELP_TEXT = '''Stoi chikito, así que no me pidan mucho
      Tira dados
 - /bless
     Te "bendice" un goblin
+- /fours 7
+    Tira 7 d6 y te dice cuantos son por lo menos 4
 - /rad o /radwolf
     Invoca la sabiduría milenaria de un lobo con camisa
 - /tyrad o /tyradwolf

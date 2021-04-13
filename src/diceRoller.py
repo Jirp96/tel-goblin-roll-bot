@@ -81,3 +81,14 @@ class DiceRoller():
         if randNum < 0:
             toAdd = -1 * toAdd        
         return "{0} ({1})".format(old_result + toAdd, goblin_result.format(toAdd))
+
+    def processFours(self, qty):
+        results = []
+
+        if not self.RepresentsInt(qty):
+            return "Dato inválido, ejemplo de formato: {0}".format(self.constants.VALID_ROLL_FOURS_FORMAT_EXAMPLE)
+
+        for i in range(int(qty)):
+            results.append(self.rollDice(6)) 
+        
+        return "{0} -> {1} victorias".format('; '.join(results), sum(1 for n in results if n >= 4))
