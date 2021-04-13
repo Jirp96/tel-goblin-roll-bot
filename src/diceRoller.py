@@ -91,4 +91,4 @@ class DiceRoller():
         for i in range(int(qty)):
             results.append(self.rollDice(6)) 
         
-        return "{0} -> {1} victorias".format('; '.join(results), sum(1 for n in results if n >= 4))
+        return "{0} -> {1} victorias".format('; '.join([str(e) for e in results]), sum(1 for n in results if n >= 4))
