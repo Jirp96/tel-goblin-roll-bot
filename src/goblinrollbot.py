@@ -56,6 +56,9 @@ def error_callback(bot, update, context):
     except TelegramError:
         LOGGER.warning('Update "%s" caused error "%s"', update, context.error)
 
+def catra(update, context):
+    context.bot.send_message(chat_id=update.effective_chat.id, text=constants.CATRA_TEXT)
+
 def start(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text="Soy un bot goblin, hablenme!")
 
@@ -76,6 +79,7 @@ def main():
     bless_handler = CommandHandler('bless', goblinBless)
     rad_handler = CommandHandler('rad', radwolf)
     radwolf_handler = CommandHandler('radwolf', radwolf)
+    catra_handler = CommandHandler('catra', catra)
     tyrad_handler = CommandHandler('tyrad', tyradwolf)
     tyradwolf_handler = CommandHandler('tyradwolf', tyradwolf)
     help_handler = CommandHandler('help', help)
@@ -91,6 +95,7 @@ def main():
     dispatcher.add_handler(radwolf_handler)
     dispatcher.add_handler(tyrad_handler)
     dispatcher.add_handler(tyradwolf_handler)
+    dispatcher.add_handler(catra_handler)
     dispatcher.add_handler(help_handler)
 
     dispatcher.add_handler(unknown_handler)

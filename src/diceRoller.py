@@ -87,7 +87,9 @@ class DiceRoller():
 
         if not self.RepresentsInt(qty):
             return "Dato inválido, ejemplo de formato: {0}".format(self.constants.VALID_ROLL_FOURS_FORMAT_EXAMPLE)
-
+        elif int(qty) > 100:
+            return "Ta muy grande, solo se contar hasta 100"
+            
         for i in range(int(qty)):
             results.append(self.rollDice(6)) 
         

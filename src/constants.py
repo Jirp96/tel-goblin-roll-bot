@@ -54,6 +54,8 @@ GOBLIN_BLESS_FRASES = [
     "Sad goblin noises."
     ]
 
+CATRA_TEXT = "+1 al contador furro del apocalipsis"
+
 VALID_ROLL_FORMAT_EXAMPLE = "/roll 2d20 + 3d6 + 5 - 1d4"
 
 VALID_ROLL_FOURS_FORMAT_EXAMPLE = "/fours 7"
