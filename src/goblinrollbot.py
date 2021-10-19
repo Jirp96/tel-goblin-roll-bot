@@ -74,6 +74,13 @@ def bubblegum(update, context):
         chat_id=update.effective_chat.id, text=constants.BUBBLEGUM_TEXT)
 
 
+def orcGang(update, context):
+    orc_text = constants.ORC_GANG_TEXT.format(random.randrange(64) + 1)
+
+    context.bot.send_message(
+        chat_id=update.effective_chat.id, text=orc_text)
+
+
 def start(update, context):
     context.bot.send_message(
         chat_id=update.effective_chat.id, text="Soy un bot goblin, hablenme!")
@@ -102,6 +109,7 @@ def main():
     radwolf_handler = CommandHandler('radwolf', radwolf)
     catra_handler = CommandHandler('catra', catra)
     bubblegum_handler = CommandHandler('bubblegum', bubblegum)
+    orcgang_handler = CommandHandler('orcgang', orcGang)
     tyrad_handler = CommandHandler('tyrad', tyradwolf)
     tyradwolf_handler = CommandHandler('tyradwolf', tyradwolf)
     help_handler = CommandHandler('help', help)
@@ -119,6 +127,7 @@ def main():
     dispatcher.add_handler(tyradwolf_handler)
     dispatcher.add_handler(catra_handler)
     dispatcher.add_handler(bubblegum_handler)
+    dispatcher.add_handler(orcgang_handler)
     dispatcher.add_handler(help_handler)
 
     dispatcher.add_handler(unknown_handler)
