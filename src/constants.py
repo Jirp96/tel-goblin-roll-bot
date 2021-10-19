@@ -56,7 +56,7 @@ GOBLIN_BLESS_FRASES = [
 
 CATRA_TEXT = "+1 al contador furro del apocalipsis"
 
-BUBLEGUM_TEXT = "+1 al contador de bubalus caóticos"
+BUBBLEGUM_TEXT = "+1 al contador de bubalus caóticos"
 
 VALID_ROLL_FORMAT_EXAMPLE = "/roll 2d20 + 3d6 + 5 - 1d4"
 
