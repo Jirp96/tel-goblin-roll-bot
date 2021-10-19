@@ -101,7 +101,7 @@ def main():
     rad_handler = CommandHandler('rad', radwolf)
     radwolf_handler = CommandHandler('radwolf', radwolf)
     catra_handler = CommandHandler('catra', catra)
-    bubblegum_handler = CommandHandler('bubblegum', catra)
+    bubblegum_handler = CommandHandler('bubblegum', bubblegum)
     tyrad_handler = CommandHandler('tyrad', tyradwolf)
     tyradwolf_handler = CommandHandler('tyradwolf', tyradwolf)
     help_handler = CommandHandler('help', help)
