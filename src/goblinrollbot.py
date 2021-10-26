@@ -75,7 +75,7 @@ def bubblegum(update, context):
 
 
 def orcGang(update, context):
-    orc_num = random.randrange(64) + 1
+    orc_num = random.randrange(100) + 1
 
     orc_text = ""
 
