@@ -75,7 +75,14 @@ def bubblegum(update, context):
 
 
 def orcGang(update, context):
-    orc_text = constants.ORC_GANG_TEXT.format(random.randrange(64) + 1)
+    orc_num = random.randrange(64) + 1
+
+    orc_text = ""
+
+    if orc_num == 69:
+        orc_text = constants.DADDY_ORC_GANG_TEXT
+    else:
+        orc_text = constants.ORC_GANG_TEXT.format(orc_num)
 
     context.bot.send_message(
         chat_id=update.effective_chat.id, text=orc_text)

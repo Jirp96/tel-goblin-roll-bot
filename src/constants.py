@@ -59,6 +59,7 @@ CATRA_TEXT = "+1 al contador furro del apocalipsis"
 BUBBLEGUM_TEXT = "+1 al contador de bubalus caóticos"
 
 ORC_GANG_TEXT = "Orco número {} será recordado"
+DADDY_ORC_GANG_TEXT = "Daddy(rip orco #69) será recordado. Murió por su avanzada edad..."
 
 VALID_ROLL_FORMAT_EXAMPLE = "/roll 2d20 + 3d6 + 5 - 1d4"
 
