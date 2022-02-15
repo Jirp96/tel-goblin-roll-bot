@@ -1,57 +1,57 @@
-import src.constants
+import constants
 
-class DiceRoller():    
+
+class DiceRoller():
     def __init__(self, random_module) -> None:
-        self.AVAILABLE_DICE = [2,4,6,8,10,12,20,100]
+        self.AVAILABLE_DICE = constants.AVAILABLE_DICE
         self.random = random_module
         self.GOBLIN_BLESSES = 0
-            
-    def addGoblinBless(self):
+
+    def add_goblin_bless(self):
         self.GOBLIN_BLESSES += 1
 
-    def resetGoblinBless(self):
+    def reset_goblin_bless(self):
         self.GOBLIN_BLESSES = 0
-    
-    def getGoblinBless(self):
+
+    def get_goblin_bless(self):
         return self.GOBLIN_BLESSES
-        
-    def rollDice(self, max):
+
+    def roll_dice(self, max: int) -> int:
         return self.random.randrange(max) + 1
 
-    def RepresentsInt(self, s):
-        try: 
+    def is_integer(self, s):
+        try:
             int(s)
             return True
         except ValueError:
             return False
 
-    def getRollNum(self, mult):
+    def get_roll_number(self, mult):
         num = 1
         if mult:
             num = int(mult)
 
         return num
 
-    def processToken(self, token):
-        if self.RepresentsInt(token):
+    def process_token(self, token):
+        if self.is_integer(token):
             return int(token)
-        
+
         dice = token.split("d")
-        if len(dice) != 2 or not ((self.RepresentsInt(dice[0]) or not dice[0]) and self.RepresentsInt(dice[1])) :
-            raise ValueError("Dato inválido, ejemplo de formato: {0}".format(self.constants.VALID_ROLL_FORMAT_EXAMPLE))
-        
-        result = 0        
+        if len(dice) != 2 or not ((self.is_integer(dice[0]) or not dice[0]) and self.is_integer(dice[1])):
+            raise ValueError("Dato inválido, ejemplo de formato: {0}".format(
+                constants.VALID_ROLL_FORMAT_EXAMPLE))
+
         diceType = int(dice[1])
         if diceType not in self.AVAILABLE_DICE:
-            raise ValueError("Dado inválido, opciones:{0}".format(" d".join(self.AVAILABLE_DICE)))
+            raise ValueError("Dado inválido, opciones:{0}".format(
+                " d".join(self.AVAILABLE_DICE)))
 
-        numRolls = self.getRollNum(dice[0])
-        for i in range(numRolls):
-            result += self.rollDice(diceType)
+        numRolls = self.get_roll_number(dice[0])
 
-        return result
+        return sum([self.roll_dice(diceType) for _ in range(numRolls)])
 
-    def processRoll(self, withBless, terms):
+    def process_roll(self, withBless, terms):
         result = 0
         text_roll = ""
 
@@ -59,38 +59,38 @@ class DiceRoller():
             for term in terms:
                 tokenList = term.split("-")
 
-                result += self.processToken(tokenList[0])
+                result += self.process_token(tokenList[0])
                 for minusToken in tokenList[1:]:
-                    result -= self.processToken(minusToken)
+                    result -= self.process_token(minusToken)
 
             if withBless:
-                result = self.applyGoblinBlesses(result)
-                self.resetGoblinBless()
+                result = self.apply_goblin_bless(result)
+                self.reset_goblin_bless()
 
-            text_roll = '=> {0}'.format(result)        
+            text_roll = '=> {0}'.format(result)
         except ValueError as err:
             text_roll = err
-        
+
         return text_roll
 
-    def applyGoblinBlesses(self, old_result):
+    def apply_goblin_bless(self, old_result):
         goblin_result = 'Blessed for {0}'
-        toAdd = self.processToken("{0}d4".format(self.GOBLIN_BLESSES))
+        toAdd = self.process_token("{0}d4".format(self.GOBLIN_BLESSES))
 
         randNum = self.random.randint(-5, 2)
         if randNum < 0:
-            toAdd = -1 * toAdd        
+            toAdd = -1 * toAdd
         return "{0} ({1})".format(old_result + toAdd, goblin_result.format(toAdd))
 
-    def processFours(self, qty):
+    def process_fours(self, qty):
         results = []
 
-        if not self.RepresentsInt(qty):
-            return "Dato inválido, ejemplo de formato: {0}".format(self.constants.VALID_ROLL_FOURS_FORMAT_EXAMPLE)
+        if not self.is_integer(qty):
+            return "Dato inválido, ejemplo de formato: {0}".format(constants.VALID_ROLL_FOURS_FORMAT_EXAMPLE)
         elif int(qty) > 100:
             return "Ta muy grande, solo se contar hasta 100"
-            
+
         for i in range(int(qty)):
-            results.append(self.rollDice(6)) 
-        
+            results.append(self.roll_dice(6))
+
         return "{0} -> {1} victorias".format('; '.join([str(e) for e in results]), sum(1 for n in results if n >= 4))

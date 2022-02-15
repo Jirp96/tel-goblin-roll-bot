@@ -2,7 +2,6 @@ import os
 
 import logging
 import random
-from src.diceRoller import DiceRoller
 
 from telegram.ext import Updater
 from telegram.ext import CommandHandler
@@ -10,7 +9,8 @@ from telegram.ext import MessageHandler, Filters
 from telegram.error import (TelegramError, Unauthorized, BadRequest,
                             TimedOut, ChatMigrated, NetworkError)
 
-from src import constants
+from diceRoller import DiceRoller
+import constants
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
@@ -23,23 +23,23 @@ def roll(update, context):
     global GOBLIN_ROLLER
     terms = ''.join(context.args).replace(" ", "").split("+")
 
-    withBless = True if GOBLIN_ROLLER.getGoblinBless() > 0 else False
+    withBless = True if GOBLIN_ROLLER.get_goblin_bless() > 0 else False
 
-    text_roll = GOBLIN_ROLLER.processRoll(withBless, terms)
+    text_roll = GOBLIN_ROLLER.process_roll(withBless, terms)
     context.bot.send_message(chat_id=update.effective_chat.id, text=text_roll)
 
 
-def rollFours(update, context):
+def roll_fours(update, context):
     global GOBLIN_ROLLER
     qty = ''.join(context.args).replace(" ", "")
 
-    text_roll = GOBLIN_ROLLER.processFours(qty)
+    text_roll = GOBLIN_ROLLER.process_fours(qty)
     context.bot.send_message(chat_id=update.effective_chat.id, text=text_roll)
 
 
-def goblinBless(update, context):
+def goblin_bless(update, context):
     global GOBLIN_ROLLER
-    GOBLIN_ROLLER.addGoblinBless()
+    GOBLIN_ROLLER.add_goblin_bless()
     goblin_bless_text = random.choice(constants.GOBLIN_BLESS_FRASES)
     context.bot.send_message(
         chat_id=update.effective_chat.id, text=goblin_bless_text)
@@ -50,7 +50,7 @@ def radwolf(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text=rad_text)
 
 
-def tyradwolf(update, context):
+def ty_radwolf(update, context):
     rad_text = random.choice(constants.TY_RADWOLF_SPONSOR_FRASES)
     context.bot.send_message(chat_id=update.effective_chat.id, text=rad_text)
 
@@ -74,7 +74,7 @@ def bubblegum(update, context):
         chat_id=update.effective_chat.id, text=constants.BUBBLEGUM_TEXT)
 
 
-def orcGang(update, context):
+def orc_gang(update, context):
     orc_num = random.randrange(100) + 1
 
     orc_text = ""
@@ -111,16 +111,16 @@ def main():
 
     start_handler = CommandHandler('start', start)
     roll_handler = CommandHandler('roll', roll)
-    bless_handler = CommandHandler('bless', goblinBless)
+    bless_handler = CommandHandler('bless', goblin_bless)
     rad_handler = CommandHandler('rad', radwolf)
     radwolf_handler = CommandHandler('radwolf', radwolf)
     catra_handler = CommandHandler('catra', catra)
     bubblegum_handler = CommandHandler('bubblegum', bubblegum)
-    orcgang_handler = CommandHandler('orcgang', orcGang)
-    tyrad_handler = CommandHandler('tyrad', tyradwolf)
-    tyradwolf_handler = CommandHandler('tyradwolf', tyradwolf)
+    orcgang_handler = CommandHandler('orcgang', orc_gang)
+    tyrad_handler = CommandHandler('tyrad', ty_radwolf)
+    tyradwolf_handler = CommandHandler('tyradwolf', ty_radwolf)
     help_handler = CommandHandler('help', help)
-    rollfours_handler = CommandHandler('fours', rollFours)
+    rollfours_handler = CommandHandler('fours', roll_fours)
 
     unknown_handler = MessageHandler(Filters.command, unknown)
 
