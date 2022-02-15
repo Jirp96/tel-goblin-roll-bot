@@ -87,6 +87,10 @@ def orc_gang(update, context):
     context.bot.send_message(
         chat_id=update.effective_chat.id, text=orc_text)
 
+def rant(update, context):
+    rad_text = random.choice(constants.RANTS)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=rad_text)
+
 
 def start(update, context):
     context.bot.send_message(
@@ -121,6 +125,7 @@ def main():
     tyradwolf_handler = CommandHandler('tyradwolf', ty_radwolf)
     help_handler = CommandHandler('help', help)
     rollfours_handler = CommandHandler('fours', roll_fours)
+    rant_handler = CommandHandler('rant', rant)
 
     unknown_handler = MessageHandler(Filters.command, unknown)
 
@@ -135,7 +140,9 @@ def main():
     dispatcher.add_handler(catra_handler)
     dispatcher.add_handler(bubblegum_handler)
     dispatcher.add_handler(orcgang_handler)
+    dispatcher.add_handler(rant_handler)
     dispatcher.add_handler(help_handler)
+    
 
     dispatcher.add_handler(unknown_handler)
     dispatcher.add_error_handler(error_callback)

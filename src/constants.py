@@ -54,6 +54,22 @@ GOBLIN_BLESS_FRASES = [
     "Sad goblin noises."
 ]
 
+RANTS = [
+    "Vamo a calmarno",
+    "El calor es lo mejor que hay, el invierno no le gusta a nadie",
+    "Dark souls 2 es el mejor Dark Souls de todos",
+    "Dark souls 2 es el peor Dark Souls que existe",
+    "La Coca Cola Light es la mejor de todas",
+    "Los libros de WoT no le llegan a los talones a la obra maestra que es la serie",
+    "El único sistema de rol que existe es D&D 5e, el resto son todos clones",
+    "Radwolf es solo un lobo",
+    "La mejor película es el live action de Avatar: El ultimo maestro aire",
+    "AGUANTE RIVER VIEJA, SOS LO MAS GRANDE QUE HAY",
+    "LOS ORCOS ESTAN SOBREVALORADOS, #ELFGANG",
+    "Los Goblins son enanos verdes y sin barba. Aguanten los Enanos, son superiores",
+    "El mejor juego de estrategia es el Kingdom Rush, Starcraft ni le llega a los talones"    
+]
+
 CATRA_TEXT = "+1 al contador furro del apocalipsis"
 
 BUBBLEGUM_TEXT = "+1 al contador de bubalus caóticos"
@@ -90,4 +106,10 @@ HELP_TEXT = '''Stoi chikito, así que no me pidan mucho
     Invoca la sabiduría milenaria de un lobo con camisa
 - /tyrad o /tyradwolf
      Para agradecer la incontable sabiduría
+- /orcgang
+    Para rememorar a los orcos que se sacrificaron por nosotros
+- /catra o /bubblegum
+    Eso
+- /rant
+    No nos hacemos responsables de que te triggerees
 '''
