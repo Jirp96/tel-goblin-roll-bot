@@ -67,7 +67,10 @@ RANTS = [
     "AGUANTE RIVER VIEJA, SOS LO MAS GRANDE QUE HAY",
     "LOS ORCOS ESTAN SOBREVALORADOS, #ELFGANG",
     "Los Goblins son enanos verdes y sin barba. Aguanten los Enanos, son superiores",
-    "El mejor juego de estrategia es el Kingdom Rush, Starcraft ni le llega a los talones"    
+    "El mejor juego de estrategia es el Kingdom Rush, Starcraft ni le llega a los talones",
+    "El Señor de los Anillos está muy sobrevalorado",
+    "Crepúsculo es mucho mas profundo que El Señor de los Anillos",
+    "La serie de El Señor de los Anillos es superior a las películas"
 ]
 
 CATRA_TEXT = "+1 al contador furro del apocalipsis"
