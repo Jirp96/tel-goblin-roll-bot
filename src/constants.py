@@ -70,7 +70,32 @@ RANTS = [
     "El mejor juego de estrategia es el Kingdom Rush, Starcraft ni le llega a los talones",
     "El Señor de los Anillos está muy sobrevalorado",
     "Crepúsculo es mucho mas profundo que El Señor de los Anillos",
-    "La serie de El Señor de los Anillos es superior a las películas"
+    "La serie de El Señor de los Anillos es superior a las películas",
+    "Kvothe es el mejor protagonista de fantasía",
+    "Es mejor ver toda la serie y no ver la película de Madoka",
+    "JOJO hace su pico en la primera temporada y después solo empeora",
+    "Lo mejor que podes hacer con JOJO es saltearte partes",
+    "Crepúsculo tiene mejores vampiros que castelvania #teamedward",
+    "Final fantasy 6 es un juego viejo que no vale la pena",
+    "Jugaste path of exile? Es como el diablo pero divertido",
+    "El lol es para pelotudos, yo solo juego #dota2",
+    "Blightown NO es brazil.",
+    "La horda son todos niños que se hacen los malos, POR LA ALIANZA",
+    "Avantasia? Eso no es una copia barata de Paramore? Anda a escuchar los originales",
+    "Despacito es la canción más importante de nuestra generación",
+    "Al fin van a sacar una serie que ponga al día el lore del señor de los anillos",
+    "Onion bro worst waifu",
+    "Kvothe es best boy",
+    "Magic es una copia americana de YuGiOh pero con peor arte",
+    "Por última vez, blightown NO es brazil",
+    "Programar es copiar y pegar",
+    "Comida casera? Ja! Aguanten las Pringles con una buena coca",
+    "Evangelion es el mejor animé que existe y todo lo demás es una copia mal hecha",
+    "Evangelion es el animé mas útil que existe, te mirás un par de capítulos y vencés al insomnio",
+    "Studio trigger le rompe el culo a ginax",
+    "Los trollocs son mucho mejor que los orcos, VIVA LOS TROLLOCS",
+    "Los charrúas son mejor que los vikingos",
+    "Trasgo es el mejor Dm que hay #meObligaronAEscribirEsto"
 ]
 
 CATRA_TEXT = "+1 al contador furro del apocalipsis"
