@@ -1,16 +1,31 @@
-import os
+#!/usr/bin/env python
+# pylint: disable=unused-argument, wrong-import-position
+# This program is dedicated to the public domain under the CC0 license.
 
+import os
 import logging
 import random
 
-from telegram.ext import Updater
-from telegram.ext import CommandHandler
-from telegram.ext import MessageHandler, Filters
-from telegram.error import (TelegramError, Unauthorized, BadRequest,
-                            TimedOut, ChatMigrated, NetworkError)
+from dotenv import load_dotenv
 
-from diceRoller import DiceRoller
+from classes.diceRoller import DiceRoller
+from classes.radwolf import RadAdvice
+from classes.rant import Rant
 import constants
+
+from telegram import __version__ as TG_VER
+try:
+    from telegram import __version_info__
+except ImportError:
+    __version_info__ = (0, 0, 0, 0, 0)  # type: ignore[assignment]
+
+if __version_info__ < (20, 0, 0, "alpha", 1):
+    raise RuntimeError(
+        f"This example is not compatible with your current PTB version {TG_VER}. To view the "
+        f"{TG_VER} version of this example, "
+        f"visit https://docs.python-telegram-bot.org/en/v{TG_VER}/examples.html"
+    )
+from telegram.ext import Application, CommandHandler, MessageHandler, filters
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
@@ -18,63 +33,55 @@ LOGGER = logging.getLogger(__name__)
 
 GOBLIN_ROLLER = DiceRoller(random)
 
-
-def roll(update, context):
+async def roll(update, context):
     global GOBLIN_ROLLER
     terms = ''.join(context.args).replace(" ", "").split("+")
 
     withBless = True if GOBLIN_ROLLER.get_goblin_bless() > 0 else False
 
     text_roll = GOBLIN_ROLLER.process_roll(withBless, terms)
-    context.bot.send_message(chat_id=update.effective_chat.id, text=text_roll)
+    await update.message.reply_text(text_roll)
 
 
-def roll_fours(update, context):
+async def roll_fours(update, context):
     global GOBLIN_ROLLER
     qty = ''.join(context.args).replace(" ", "")
 
     text_roll = GOBLIN_ROLLER.process_fours(qty)
-    context.bot.send_message(chat_id=update.effective_chat.id, text=text_roll)
+    await update.message.reply_text(text_roll)
 
 
-def goblin_bless(update, context):
+async def goblin_bless(update, context):
     global GOBLIN_ROLLER
     GOBLIN_ROLLER.add_goblin_bless()
     goblin_bless_text = random.choice(constants.GOBLIN_BLESS_FRASES)
-    context.bot.send_message(
-        chat_id=update.effective_chat.id, text=goblin_bless_text)
+    
+    await update.message.reply_text(goblin_bless_text)
 
 
-def radwolf(update, context):
-    rad_text = random.choice(constants.RADWOLF_FRASES)
-    context.bot.send_message(chat_id=update.effective_chat.id, text=rad_text)
+async def radwolf(update, context):
+    rad = RadAdvice()
+    rad_text = rad.advise()
+    await update.message.reply_text(rad_text)
 
 
-def ty_radwolf(update, context):
+async def ty_radwolf(update, context):
     rad_text = random.choice(constants.TY_RADWOLF_SPONSOR_FRASES)
-    context.bot.send_message(chat_id=update.effective_chat.id, text=rad_text)
+    await update.message.reply_text(rad_text)
 
 
-def error_callback(bot, update, context):
-    try:
-        raise context.error
-    except BadRequest:
-        LOGGER.warning('Update "%s" caused error "%s"', update, context.error)
-    except TelegramError:
-        LOGGER.warning('Update "%s" caused error "%s"', update, context.error)
+async def error_callback(update, context):
+    LOGGER.error(msg="Exception while handling an update:", exc_info=context.error)
+
+async def catra(update, context):
+    await update.message.reply_text(constants.CATRA_TEXT)
 
 
-def catra(update, context):
-    context.bot.send_message(
-        chat_id=update.effective_chat.id, text=constants.CATRA_TEXT)
+async def bubblegum(update, context):
+    await update.message.reply_text(constants.BUBBLEGUM_TEXT)
 
 
-def bubblegum(update, context):
-    context.bot.send_message(
-        chat_id=update.effective_chat.id, text=constants.BUBBLEGUM_TEXT)
-
-
-def orc_gang(update, context):
+async def orc_gang(update, context):
     orc_num = random.randrange(100) + 1
 
     orc_text = ""
@@ -84,34 +91,24 @@ def orc_gang(update, context):
     else:
         orc_text = constants.ORC_GANG_TEXT.format(orc_num)
 
-    context.bot.send_message(
-        chat_id=update.effective_chat.id, text=orc_text)
+    await update.message.reply_text(orc_text)
 
-def rant(update, context):
-    rad_text = random.choice(constants.RANTS)
-    context.bot.send_message(chat_id=update.effective_chat.id, text=rad_text)
+async def rant(update, context):
+    ranter = Rant() 
+    rant_text = ranter.rant()
+    await update.message.reply_text(rant_text)
 
+async def start(update, context):
+    await update.message.reply_text("Soy un bot goblin, hablenme!")
 
-def start(update, context):
-    context.bot.send_message(
-        chat_id=update.effective_chat.id, text="Soy un bot goblin, hablenme!")
-
-
-def unknown(update, context):
-    context.bot.send_message(
-        chat_id=update.effective_chat.id, text="Stoi chikito, no entendí ese comando.")
+async def help(update, context):
+    await update.message.reply_text(constants.HELP_TEXT)
 
 
-def help(update, context):
-    context.bot.send_message(
-        chat_id=update.effective_chat.id, text=constants.HELP_TEXT)
+def main() -> None:
+    GOBLIN_TELEGRAM_BOT_API_TOKEN =  os.environ.get('GOBLIN_TELEGRAM_BOT_API_TOKEN', '')
 
-
-def main():
-
-    PORT = int(os.environ.get('PORT', '8443'))
-    updater = Updater(token=constants.TELEGRAM_BOT_API_TOKEN, use_context=True)
-    dispatcher = updater.dispatcher
+    application = Application.builder().token(GOBLIN_TELEGRAM_BOT_API_TOKEN).build()
 
     start_handler = CommandHandler('start', start)
     roll_handler = CommandHandler('roll', roll)
@@ -127,33 +124,26 @@ def main():
     rollfours_handler = CommandHandler('fours', roll_fours)
     rant_handler = CommandHandler('rant', rant)
 
-    unknown_handler = MessageHandler(Filters.command, unknown)
-
-    dispatcher.add_handler(start_handler)
-    dispatcher.add_handler(roll_handler)
-    dispatcher.add_handler(rollfours_handler)
-    dispatcher.add_handler(bless_handler)
-    dispatcher.add_handler(rad_handler)
-    dispatcher.add_handler(radwolf_handler)
-    dispatcher.add_handler(tyrad_handler)
-    dispatcher.add_handler(tyradwolf_handler)
-    dispatcher.add_handler(catra_handler)
-    dispatcher.add_handler(bubblegum_handler)
-    dispatcher.add_handler(orcgang_handler)
-    dispatcher.add_handler(rant_handler)
-    dispatcher.add_handler(help_handler)
+    application.add_handler(start_handler)
+    application.add_handler(roll_handler)
+    application.add_handler(rollfours_handler)
+    application.add_handler(bless_handler)
+    application.add_handler(rad_handler)
+    application.add_handler(radwolf_handler)
+    application.add_handler(tyrad_handler)
+    application.add_handler(tyradwolf_handler)
+    application.add_handler(catra_handler)
+    application.add_handler(bubblegum_handler)
+    application.add_handler(orcgang_handler)
+    application.add_handler(rant_handler)
+    application.add_handler(help_handler)
     
-
-    dispatcher.add_handler(unknown_handler)
-    dispatcher.add_error_handler(error_callback)
-
-    updater.start_webhook(listen="0.0.0.0",
-                          port=PORT,
-                          url_path=constants.TELEGRAM_BOT_API_TOKEN)
-    updater.bot.set_webhook("https://{0}.herokuapp.com/{1}".format(
-        constants.HEROKU_APP_NAME, constants.TELEGRAM_BOT_API_TOKEN))
-    updater.idle()
+    application.add_error_handler(error_callback)
+    
+    # Run the bot until the user presses Ctrl-C
+    application.run_polling()
 
 
 if __name__ == "__main__":
+    load_dotenv() 
     main()
