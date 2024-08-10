@@ -48,6 +48,9 @@ class DiceRoller():
                 " d".join(self.AVAILABLE_DICE)))
 
         numRolls = self.get_roll_number(dice[0])
+        
+        if numRolls > constants.MAXIMUM_DICE_ROLLS:
+            raise ValueError("No puedo tirar tantos dados, máximo {0}".format(constants.MAXIMUM_DICE_ROLLS))
 
         return sum([self.roll_dice(diceType) for _ in range(numRolls)])
 
@@ -69,7 +72,7 @@ class DiceRoller():
 
             text_roll = '=> {0}'.format(result)
         except ValueError as err:
-            text_roll = err
+            text_roll = str(err)
 
         return text_roll
 
@@ -87,8 +90,8 @@ class DiceRoller():
 
         if not self.is_integer(qty):
             return "Dato inválido, ejemplo de formato: {0}".format(constants.VALID_ROLL_FOURS_FORMAT_EXAMPLE)
-        elif int(qty) > 100:
-            return "Ta muy grande, solo se contar hasta 100"
+        elif int(qty) > constants.MAXIMUM_DICE_ROLLS:
+            return "Ta muy grande, solo se contar hasta {0}".format(constants.MAXIMUM_DICE_ROLLS)
 
         for i in range(int(qty)):
             results.append(self.roll_dice(6))

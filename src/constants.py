@@ -30,6 +30,8 @@ D100 = 100
 
 AVAILABLE_DICE = [D2, D4, D6, D8, D10, D12, D20, D100]
 
+MAXIMUM_DICE_ROLLS = 100
+
 # Useful Text Messages
 VALID_ROLL_FORMAT_EXAMPLE = "/roll 2d20 + 3d6 + 5 - 1d4"
 

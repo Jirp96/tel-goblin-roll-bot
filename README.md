@@ -15,6 +15,7 @@ python3 -m pip install -r requirements.txt
 # TODO:
 - [X] Code refactor
 - [X] Add logs
+- [X] Cap maximum number of dice rolled
 - [ ] Add tests
 - [ ] Docker/Docker compose for setup
 - [ ] GPT or so integration (for Radwolf)
