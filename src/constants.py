@@ -1,3 +1,7 @@
+import os
+
+GOBLIN_DB = os.environ["GOBLIN_DB"]
+
 TY_RADWOLF_SPONSOR_FRASES = [
     "Este bot está auspiciado por Garbarino",
     "Es solo un lobo con camisa! Nada más",
@@ -11,10 +15,6 @@ GOBLIN_BLESS_FRASES = [
     "Pensaste en lo que estás haciendo?",
     "Sad goblin noises."
 ]
-
-CATRA_TEXT = "+1 al contador furro del apocalipsis"
-
-BUBBLEGUM_TEXT = "+1 al contador de bubalus caóticos"
 
 ORC_GANG_TEXT = "Orco número {} será recordado"
 DADDY_ORC_GANG_TEXT = "Daddy(rip orco #69) será recordado. Murió por su avanzada edad..."
@@ -50,8 +50,6 @@ HELP_TEXT = '''Stoi chikito, así que no me pidan mucho
      Para agradecer la incontable sabiduría
 - /orcgang
     Para rememorar a los orcos que se sacrificaron por nosotros
-- /catra o /bubblegum
-    Eso
 - /rant
     No nos hacemos responsables de que te triggerees
 '''

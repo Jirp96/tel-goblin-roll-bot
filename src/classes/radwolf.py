@@ -7,11 +7,13 @@ TEXT_POSITION = 1
 class RadAdvice():
     advice_quotes = []
     
-    def __init__(self) -> None:
-        con = sqlite3.connect(os.environ["GOBLIN_DB"])
-        cur = con.cursor()
-        res = cur.execute("SELECT * FROM rad_advise;")
-        self.advice_quotes.extend(res.fetchall())
+    def __init__(self, db) -> None:
+        database_name = db
+        
+        connection = sqlite3.connect(database_name)
+        cursor = connection.cursor()
+        result = cursor.execute("SELECT * FROM rad_advise;")
+        self.advice_quotes.extend(result.fetchall())
 
     def advise(self) -> str:
         advise = random.choice(self.advice_quotes)
