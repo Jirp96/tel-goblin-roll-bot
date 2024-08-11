@@ -2,12 +2,15 @@
 import logging
 import random
 from classes.diceRoller import DiceRoller
+from classes.radIA import RadIA
 from classes.radwolf import RadAdvice
 from classes.rant import Rant
 import constants
 
 GOBLIN_ROLLER = DiceRoller(random)
 GOBLIN_DB = constants.GOBLIN_DB
+
+RAD_IA = RadIA(constants.GEMINI_APIKEY)
 
 LOGGER = logging.getLogger(__name__)
 
@@ -67,6 +70,15 @@ async def start(update, context):
 async def help(update, context):
     await update.message.reply_text(constants.HELP_TEXT)
 
+async def radIA(update, context):
+    global RAD_IA    
+    rad_text = RAD_IA.generate_response("Dame un consejo")
+    await update.message.reply_text(rad_text)
+
+async def rock_and_stone(update, context):
+    rock_text = random.choice(constants.ROCK_AND_STONE)
+    await update.message.reply_text(rock_text)
+
 async def error_callback(update, context):
     global LOGGER
     LOGGER.error(msg="Exception while handling an update:", exc_info=context.error)
@@ -81,5 +93,7 @@ COMMANDS = {
     'tyradwolf': ty_radwolf,
     'help': help,
     'fours': roll_fours,
-    'rant': rant
+    'rant': rant,
+    'radIA': radIA,
+    'rockandstone': rock_and_stone
 }

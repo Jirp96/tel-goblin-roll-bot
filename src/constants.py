@@ -1,6 +1,7 @@
 import os
 
 GOBLIN_DB = os.environ["GOBLIN_DB"]
+GEMINI_APIKEY = os.environ["GEMINI_APIKEY"]
 
 TY_RADWOLF_SPONSOR_FRASES = [
     "Este bot está auspiciado por Garbarino",
@@ -14,6 +15,19 @@ GOBLIN_BLESS_FRASES = [
     "Un Goblin es una bendición.",
     "Pensaste en lo que estás haciendo?",
     "Sad goblin noises."
+]
+
+ROCK_AND_STONE = [
+    "Rock and Stone!",
+    "To the bone!",
+    "For Karl!",
+    "Leave no dwarf behind!",
+    "Rock and Stone, brother!",
+    "For Rock and Stone!",
+    "Rock and Stone in the heart!",
+    "Did I hear a Rock and Stone?",
+    "Rock and Stone, everyone!",
+    "Rock and Stone, yeah!",        
 ]
 
 ORC_GANG_TEXT = "Orco número {} será recordado"
@@ -55,3 +69,5 @@ HELP_TEXT = '''Stoi chikito, así que no me pidan mucho
 - /rant
     No nos hacemos responsables de que te triggerees
 '''
+
+RAD_IA_CONTEXT = "Eres un lobo terapeuta llamado Radwolf. Siempre das consejos que buscan mejorar la vida de quienes te leen. En realidad eres un lobo con camisa, y tus consejos son similares a los que daría Iroh de Avatar The Last Airbender. No saludes y ve directo al punto."

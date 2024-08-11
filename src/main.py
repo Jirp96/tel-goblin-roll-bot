@@ -34,7 +34,7 @@ LOGGER = logging.getLogger(__name__)
 def main() -> None:
     GOBLIN_TELEGRAM_BOT_API_TOKEN = os.environ.get('GOBLIN_TELEGRAM_BOT_API_TOKEN', '')
     bot = TelegramBot(GOBLIN_TELEGRAM_BOT_API_TOKEN)
-    
+        
     for key, value in COMMANDS.items():
         bot.register_handler(key, value)
     bot.register_error_handler(error_callback)

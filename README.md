@@ -18,7 +18,7 @@ python3 -m pip install -r requirements.txt
 - [X] Cap maximum number of dice rolled
 - [ ] Add tests
 - [ ] Docker/Docker compose for setup
-- [ ] GPT or so integration (for Radwolf)
+- [X] GPT or so integration (for Radwolf)
 - [ ] Add a /cast command?
 - [ ] Add /djrad command (Puts a random song from spotify)
-- [ ] Rock And Stone
+- [X] Rock And Stone
