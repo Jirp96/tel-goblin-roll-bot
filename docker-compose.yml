@@ -1,0 +1,21 @@
+version: "1"
+services:
+  web:
+    container_name: server
+    command: python3 main.py
+    environment:
+      GOBLIN_DB: "db:9983"
+      GEMINI_APIKEY: "sample-apikey"
+      GOBLIN_TELEGRAM_BOT_API_TOKEN: "sample-apikey"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./src:/app
+    restart: unless-stopped
+  db:
+    image: nouchka/sqlite3:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./db/:/root/db/
