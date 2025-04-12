@@ -4,7 +4,7 @@ import google.generativeai as genai
 class RadIA:
     def __init__(self, apikey) -> None:        
         genai.configure(api_key=apikey)
-        self.model = genai.GenerativeModel('gemini-pro')
+        self.model = genai.GenerativeModel('gemini-2.0-flash')
         self.chat = self.model.start_chat(
             history=[
                 {"role": "model", "parts": constants.RAD_IA_CONTEXT},
