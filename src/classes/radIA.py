@@ -13,7 +13,7 @@ class RadIA:
     def generate_response(self, message):
         try:
             response = self.chat.send_message(message, generation_config=genai.types.GenerationConfig(
-                max_output_tokens=200
+                max_output_tokens=2000
             ),)
             return response.text            
         except Exception as e:
